@@ -4,8 +4,8 @@ const containerCharacter = document.getElementsByClassName("container-character"
 
 const VELOCITY = 10;
 
-const SCREEN_WIDTH = screen.width;
-const SCREEN_HEIGHT = screen.height;
+const WINDOW_WIDTH = window.innerWidth - 100;
+const WINDOW_HEIGHT = window.innerHeight - 100;
 
 let xPosition = 500;
 let yPosition = 300;
@@ -47,6 +47,12 @@ window.addEventListener("keydown", (event) => {
         xPosition += VELOCITY;
     }
 
-    containerCharacter.style.top = `${yPosition}px`;
-    containerCharacter.style.left = `${xPosition}px`
+    if(yPosition > 0 && yPosition < WINDOW_HEIGHT){
+        containerCharacter.style.top = `${yPosition}px`;
+    }
+    
+    if(xPosition > 0 && xPosition < WINDOW_WIDTH){
+        containerCharacter.style.left = `${xPosition}px`
+    }
+    
 });
