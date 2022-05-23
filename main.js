@@ -1,16 +1,16 @@
-//Atribuindo um elemento do DOM (imagem do personagem) à variável character através de um seletor, pela classe
+//Seleciona um elemento do DOM (imagem do personagem) através de sua classe e o atribui à variável character 
 const character = document.getElementsByClassName("character")[0];
-//Atribuindo um elemento do DOM (div da imagem) à variável character através de um seletor, pela classe
+//Seleciona um elemento do DOM (div da imagem) pela sua classe e o atribui à variável containerCharacter
 const containerCharacter = document.getElementsByClassName("container-character")[0];
 
-//Declarando a velocidade com que o personagem irá se mover a cada tecla
+//Declara a "velocidade" do personagem, ou seja quantos pixels ele se moverá a cada tecla
 const VELOCITY = 10;
 
 //Variável que representa o espaço horizontal disponível para movimentação do personagem
 const WINDOW_WIDTH = window.innerWidth - 100;
 //Variável que representa o espaço vertical disponível para movimentação do personagem
 const WINDOW_HEIGHT = window.innerHeight - 100;
-//Em ambas acima substitui do objeto screen por window e subtrai do tramanho character para aumentar a precisão da medida
+//Em ambas acima substitui do objeto screen por window e subtrai do tamanho do containerCharacter para aumentar a precisão da medida
 
 //Variáveis mutáveis que representam a posição do character na página, analogamente ao plano cartesiano:
 //Esse seria o X do par ordenado
@@ -18,7 +18,7 @@ let xPosition = 500;
 //Esse seria o Y do par ordenado
 let yPosition = 300;
 
-//Array contendo os possíveis eventos a serem recebidos através das setas do teclado
+//Array contendo os possíveis teclas a serem recebidas no keyboardEvent
 const keysAvaiable = ["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"]
 //Array contendo as classes que podem ser ativadas no documento CSS a depender do evento recebido
 const directions = ["turnUp", "turnLeft", "turnRight", "turnDown"];
@@ -30,8 +30,8 @@ window.addEventListener("keydown", (event) => {
     //Variável que guarda o atributo "key" que retorna o valor da tecla pressionada no keyboardEvent
     const key  = event.key;
 
-    //Verifica se a tecla pressionada no keyboardevent corresponde a alguma daquelas declaradas no array keysAvaible. 
-    //obtem-se essa verificação através do método some que varre o array executando uma arrow function que
+    //Verifica se a tecla pressionada no keyboardevent corresponde a alguma daquelas declaradas no array keysAvaible 
+    //obtem-se essa verificação através do método some que varre o array executando uma arrow function
     const keyPressedAvaiable =  keysAvaiable.some((currentKey) => {
         //compara cada valor do array ao valor da variável key e guarda a conclusão em boolean na variável keyPressedAvaiable
         return currentKey === key;
@@ -43,7 +43,7 @@ window.addEventListener("keydown", (event) => {
 
     //Usa o método forEach para executar a arrow function em cada elemento do array "directions"
     directions.forEach((direction) => {
-        //Estrutura condiiconal, caso o HTML Element de class "character" tenha também outra classe listada que corresponda 
+        //Estrutura condicional, caso o HTML Element de class "character" tenha também outra classe listada que corresponda 
         //a uma daquelas declaradas em "directions", essa será removida de sua classlist
         if(character.classList.contains(direction)) character.classList.remove(direction);
     })
@@ -79,12 +79,12 @@ window.addEventListener("keydown", (event) => {
 
     //Estrutura condicional, caso o valor obtido para posição vertical do elemento esteja entre 0 e a altura máxima da janela
     if(yPosition > 0 && yPosition < WINDOW_HEIGHT){
-        //então a posição do limite superior do elemento é aleterada pela variável yPosition
+        //então a posição do limite superior do elemento é alterada pata o valor da variável yPosition
         containerCharacter.style.top = `${yPosition}px`;
     }
     //Estrutura condicional, caso o valor obtido para posição horizontal do elemento esteja entre 0 e a largura máxima da janela
     if(xPosition > 0 && xPosition < WINDOW_WIDTH){
-        //então a posição do limite esquerdo do elemento é aleterada pela variável xPosition
+        //então a posição do limite esquerdo do elemento é alterada para o valor da variável xPosition
         containerCharacter.style.left = `${xPosition}px`
     }
     
